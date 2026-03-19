@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('Student Dashboard')}"></head>
+<body>
+<div class="app-container">
+    <aside th:replace="~{fragments/sidebar :: userSidebar('dashboard')}"></aside>
+    <main class="main-content">
+        <header th:replace="~{fragments/topbar :: topbar('Available Exams', 'Student')}"></header>
+        <div class="content-area">
+            <h2 class="mb-4">Exams Ready to Take</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px;">
+                <div th:each="exam: ${exams}" class="card" style="border-top: 4px solid var(--primary-color);">
+                    <div class="card-body">
+                        <h3 th:text="${exam.title}" style="margin-top: 0; margin-bottom: 12px; font-size: 1.25rem; color: var(--text-primary);"></h3>
+                        <p class="text-secondary mb-4" style="font-size: 0.95rem;">
+                            <i class="fa-regular fa-clock" style="margin-right: 8px;"></i>Duration: <span th:text="${exam.duration}" class="font-medium" style="color: var(--text-primary);"></span> Minutes
+                        </p>
+                        <a th:href="@{/exam/{id}(id=${exam.id})}" class="btn btn-primary" style="width: 100%;">
+                            <i class="fa-solid fa-pen-nib"></i> Start Exam
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Empty State -->
+                <div th:if="${#lists.isEmpty(exams)}" class="card text-center" style="grid-column: 1 / -1; padding: 48px;">
+                    <i class="fa-solid fa-mug-hot text-secondary" style="font-size: 3rem; margin-bottom: 16px;"></i>
+                    <h3 class="text-secondary">No Exams Available</h3>
+                    <p class="text-secondary">There are currently no active exams. Please check back later.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

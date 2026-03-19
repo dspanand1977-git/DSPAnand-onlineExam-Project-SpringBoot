@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('Add Question')}"></head>
+<body>
+<div class="app-container">
+    <aside th:replace="~{fragments/sidebar :: adminSidebar('admin-dashboard')}"></aside>
+    <main class="main-content">
+        <header th:replace="~{fragments/topbar :: topbar('Add Question', 'Admin')}"></header>
+        <div class="content-area">
+            <a th:href="@{/admin}" class="btn btn-outline mb-4"><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</a>
+            
+            <div class="card" style="max-width: 800px; margin: 0 auto;">
+                <div class="card-header">
+                    <h3>Question Details</h3>
+                </div>
+                <div class="card-body">
+                    <form th:action="@{/admin/addQuestion}" method="post">
+                        <input type="hidden" name="examId" th:value="${examId}">
+                        
+                        <div class="form-group">
+                            <label class="form-label">Question Text</label>
+                            <textarea class="form-control" name="questionText" rows="4" placeholder="Enter the complete question here..." required style="resize: vertical;"></textarea>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; border-top: 1px solid var(--border-color); padding-top: 20px; margin-top: 20px;">
+                            <div class="form-group">
+                                <label class="form-label" style="display: flex; align-items: center; gap: 8px;">
+                                    <span style="background: var(--bg-main); width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 0.8rem; font-weight: bold;">A</span>
+                                    Option A
+                                </label>
+                                <input type="text" class="form-control" name="optionA" required placeholder="Option A text">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" style="display: flex; align-items: center; gap: 8px;">
+                                    <span style="background: var(--bg-main); width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 0.8rem; font-weight: bold;">B</span>
+                                    Option B
+                                </label>
+                                <input type="text" class="form-control" name="optionB" required placeholder="Option B text">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label class="form-label" style="display: flex; align-items: center; gap: 8px;">
+                                    <span style="background: var(--bg-main); width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 0.8rem; font-weight: bold;">C</span>
+                                    Option C
+                                </label>
+                                <input type="text" class="form-control" name="optionC" required placeholder="Option C text">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label class="form-label" style="display: flex; align-items: center; gap: 8px;">
+                                    <span style="background: var(--bg-main); width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 0.8rem; font-weight: bold;">D</span>
+                                    Option D
+                                </label>
+                                <input type="text" class="form-control" name="optionD" required placeholder="Option D text">
+                            </div>
+                        </div>
+                        
+                        <div style="background: rgba(0, 208, 132, 0.05); border: 1px solid rgba(0, 208, 132, 0.2); padding: 20px; border-radius: var(--radius-md); margin-top: 24px; display: flex; align-items: center; gap: 20px;">
+                            <div style="flex-grow: 1;">
+                                <label class="form-label" style="margin-bottom: 4px; color: #009961;">Correct Answer</label>
+                                <p style="margin: 0; font-size: 0.85rem; color: var(--text-secondary);">Select the letter of the correct option.</p>
+                            </div>
+                            <div style="width: 200px;">
+                                <select class="form-control" name="correctAnswer" required style="border-color: rgba(0, 208, 132, 0.3);">
+                                    <option value="" disabled selected>Select Answer...</option>
+                                    <option value="A">Option A</option>
+                                    <option value="B">Option B</option>
+                                    <option value="C">Option C</option>
+                                    <option value="D">Option D</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4 text-right border-top pt-4" style="border-top: 1px solid var(--border-color); padding-top: 20px;">
+                            <button type="submit" class="btn btn-primary" style="padding: 10px 24px;"><i class="fa-solid fa-plus"></i> Add Question to Exam</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

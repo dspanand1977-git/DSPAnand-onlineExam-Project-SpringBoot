@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<!-- User Sidebar -->
+<aside class="sidebar" th:fragment="userSidebar(activePage)">
+    <div class="sidebar-brand">
+        <i class="fa-solid fa-graduation-cap"></i>
+        Exam<span>Portal</span>
+    </div>
+    <div class="sidebar-menu">
+        <div class="menu-label">Main Menu</div>
+        <a th:href="@{/dashboard}" class="menu-item" th:classappend="${activePage == 'dashboard'} ? 'active' : ''">
+            <i class="fa-solid fa-house"></i>
+            Dashboard
+        </a>
+        <a th:href="@{/dashboard}" class="menu-item" th:classappend="${activePage == 'exams'} ? 'active' : ''">
+            <i class="fa-solid fa-file-contract"></i>
+            My Exams
+        </a>
+        <a th:href="@{/logout}" class="menu-item mt-3 text-secondary">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            Logout
+        </a>
+    </div>
+</aside>
+
+<!-- Admin Sidebar -->
+<aside class="sidebar" th:fragment="adminSidebar(activePage)">
+    <div class="sidebar-brand">
+        <i class="fa-solid fa-graduation-cap"></i>
+        Admin<span>Portal</span>
+    </div>
+    <div class="sidebar-menu">
+        <div class="menu-label">Management</div>
+        <a th:href="@{/admin}" class="menu-item" th:classappend="${activePage == 'admin-dashboard'} ? 'active' : ''">
+            <i class="fa-solid fa-chart-pie"></i>
+            Dashboard
+        </a>
+        <a th:href="@{/admin/createExam}" class="menu-item" th:classappend="${activePage == 'create-exam'} ? 'active' : ''">
+            <i class="fa-solid fa-plus"></i>
+            Create Exam
+        </a>
+        <a th:href="@{/logout}" class="menu-item mt-3 text-secondary">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            Logout
+        </a>
+    </div>
+</aside>
+
+</body>
+</html>

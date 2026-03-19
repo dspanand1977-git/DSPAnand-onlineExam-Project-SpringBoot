@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('Create Exam')}"></head>
+<body>
+<div class="app-container">
+    <aside th:replace="~{fragments/sidebar :: adminSidebar('create-exam')}"></aside>
+    <main class="main-content">
+        <header th:replace="~{fragments/topbar :: topbar('Create New Exam', 'Admin')}"></header>
+        <div class="content-area">
+            <a th:href="@{/admin}" class="btn btn-outline mb-4"><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</a>
+            <div class="card" style="max-width: 600px; margin: 0 auto;">
+                <div class="card-header">
+                    <h3>Exam Details</h3>
+                </div>
+                <div class="card-body">
+                    <form th:action="@{/admin/createExam}" method="post">
+                        <div class="form-group">
+                            <label class="form-label">Exam Title</label>
+                            <input type="text" class="form-control" name="title" placeholder="e.g. Midterm Java Assessment" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Duration (minutes)</label>
+                            <input type="number" class="form-control" name="duration" placeholder="60" min="1" required>
+                        </div>
+                        <div class="mt-4">
+                            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; font-size: 1rem;">
+                                <i class="fa-solid fa-save"></i> Save Exam
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

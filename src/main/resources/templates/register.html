@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Online Exam Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/portal.css}">
+</head>
+<body>
+    <div style="position: absolute; top: 0; left: 0; width: 100%; text-align: center; padding: 20px; background-color: var(--bg-surface); box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-bottom: 1px solid var(--border-color); z-index: 10;">
+        <h1 style="margin: 0; font-size: 1.5rem; font-weight: 700; color: var(--primary-color); letter-spacing: 1px;">ANAND <span style="font-weight: 300; color: var(--text-secondary);">| CKS</span></h1>
+    </div>
+    
+    <div class="auth-container">
+        <div class="auth-card" style="margin-top: 60px;">
+            <div class="auth-header">
+                <i class="fa-solid fa-user-plus" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 16px;"></i>
+                <h2>Create Account</h2>
+                <p>Register as a new student to start taking exams.</p>
+            </div>
+            
+            <form action="/register" method="post">
+                <div class="form-group">
+                    <label class="form-label"><i class="fa-solid fa-user"></i> Full Name</label>
+                    <input type="text" class="form-control" name="name" placeholder="John Doe" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label"><i class="fa-solid fa-envelope"></i> Email Address</label>
+                    <input type="email" class="form-control" name="email" placeholder="student@example.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label"><i class="fa-solid fa-lock"></i> Password</label>
+                    <input type="password" class="form-control" name="password" placeholder="••••••••" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px; padding: 12px; font-size: 1rem;">
+                    Register Now
+                </button>
+            </form>
+            
+            <div class="text-center mt-3">
+                <span class="text-secondary">Already have an account? </span>
+                <a th:href="@{/login}">Login here</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('Admin Dashboard')}"></head>
+<body>
+<div class="app-container">
+    <aside th:replace="~{fragments/sidebar :: adminSidebar('admin-dashboard')}"></aside>
+    <main class="main-content">
+        <header th:replace="~{fragments/topbar :: topbar('Admin Dashboard', 'Admin')}"></header>
+        <div class="content-area">
+            <div class="flex justify-between items-center mb-4">
+                <h2>Manage Exams</h2>
+                <a th:href="@{/admin/createExam}" class="btn btn-success"><i class="fa-solid fa-plus"></i> Create New Exam</a>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px;">
+                <div th:each="exam : ${exams}" class="card">
+                    <div class="card-header">
+                        <h3 th:text="${exam.title}" style="margin:0; font-size: 1.1rem; color: var(--text-primary);"></h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-secondary mb-4" style="font-size: 0.95rem;">
+                            <i class="fa-regular fa-clock" style="margin-right: 8px;"></i>Duration: <span th:text="${exam.duration}" class="font-medium" style="color: var(--text-primary);"></span> Minutes
+                        </p>
+                        <a th:href="@{/admin/addQuestion/{id}(id=${exam.id})}" class="btn btn-primary" style="width: 100%;">
+                            <i class="fa-solid fa-list-check"></i> Add Questions
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Empty State -->
+                <div th:if="${#lists.isEmpty(exams)}" class="card text-center" style="grid-column: 1 / -1; padding: 48px;">
+                    <i class="fa-solid fa-folder-open text-secondary" style="font-size: 3rem; margin-bottom: 16px;"></i>
+                    <h3 class="text-secondary">No Exams Found</h3>
+                    <p class="text-secondary mb-4">You haven't created any exams yet.</p>
+                    <a th:href="@{/admin/createExam}" class="btn btn-primary">Create Your First Exam</a>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

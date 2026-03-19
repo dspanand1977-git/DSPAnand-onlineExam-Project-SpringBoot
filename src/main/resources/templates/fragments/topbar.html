@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<header class="topbar" th:fragment="topbar(pageTitle, userName)">
+    <div class="topbar-left" style="flex: 1;">
+        <h2 th:text="${pageTitle}">Dashboard</h2>
+    </div>
+    
+    <div style="flex: 1; text-align: center;">
+        <div style="display: inline-block; padding: 6px 16px; background-color: rgba(0, 102, 255, 0.05); border-radius: 20px; border: 1px solid rgba(0, 102, 255, 0.1);">
+            <span style="font-weight: 700; font-size: 1.1rem; color: var(--primary-color); letter-spacing: 0.5px;">ANAND</span>
+            <span style="color: var(--text-secondary); margin: 0 6px;">&bull;</span>
+            <span style="font-weight: 500; font-size: 1.05rem; color: #333;">CKS</span>
+        </div>
+    </div>
+
+    <div class="topbar-right" style="flex: 1; justify-content: flex-end;">
+        <div class="user-profile">
+            <div class="avatar" th:text="${userName != null ? #strings.substring(userName,0,1).toUpperCase() : 'U'}">U</div>
+            <span class="font-medium" th:text="${userName != null ? userName : 'Student'}">Student</span>
+        </div>
+    </div>
+</header>
+
+</body>
+</html>

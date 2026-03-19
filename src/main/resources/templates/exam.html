@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('Exam')}"></head>
+<body>
+<div class="app-container">
+    <aside th:replace="~{fragments/sidebar :: userSidebar('exams')}"></aside>
+    <main class="main-content bg-main">
+        <header th:replace="~{fragments/topbar :: topbar('Exam Taking Interface', 'Student')}"></header>
+        
+        <div class="content-area">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <form action="/submitExam" method="post">
+                    <!-- Hidden fields for student and exam IDs -->
+                    <input type="hidden" name="studentId" th:value="${student.id}">
+                    <input type="hidden" name="examId" th:value="${examId}">
+                    
+                    <div class="card mb-4" style="background: var(--primary-color); color: white;">
+                        <div class="card-body" style="padding: 24px; display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <h2 style="margin: 0; color: white;">Examination</h2>
+                                <p style="margin: 4px 0 0 0; opacity: 0.9;">Please answer all the questions below carefully.</p>
+                            </div>
+                            <div style="font-size: 2rem; opacity: 0.5;">
+                                <i class="fa-regular fa-file-lines"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div th:each="q,stat : ${questions}" class="question-card">
+                        <h4 style="display: flex; gap: 12px; align-items: flex-start; line-height: 1.4;">
+                            <span style="background-color: rgba(0, 102, 255, 0.1); color: var(--primary-color); width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 0.9rem; flex-shrink: 0;" th:text="${stat.count}"></span>
+                            <span th:text="${q.questionText}"></span>
+                        </h4>
+                        
+                        <div style="margin-top: 20px; padding-left: 40px;">
+                            <label class="option-label">
+                                <input type="radio" th:name="${q.id}" value="A" required>
+                                <span th:text="${q.optionA}"></span>
+                            </label>
+                            
+                            <label class="option-label">
+                                <input type="radio" th:name="${q.id}" value="B">
+                                <span th:text="${q.optionB}"></span>
+                            </label>
+                            
+                            <label class="option-label">
+                                <input type="radio" th:name="${q.id}" value="C">
+                                <span th:text="${q.optionC}"></span>
+                            </label>
+                            
+                            <label class="option-label">
+                                <input type="radio" th:name="${q.id}" value="D">
+                                <span th:text="${q.optionD}"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="card mt-4 mb-4" style="padding: 24px;">
+                        <div class="flex justify-between items-center">
+                            <p class="text-secondary m-0">Please review your answers before submitting.</p>
+                            <button type="submit" class="btn btn-success" style="padding: 12px 32px; font-size: 1.1rem; box-shadow: 0 4px 14px 0 rgba(0,208,132,0.39);">
+                                <i class="fa-solid fa-paper-plane mr-2"></i> Submit Exam
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>
